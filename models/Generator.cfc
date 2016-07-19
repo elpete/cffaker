@@ -34,10 +34,12 @@ component {
             return false;
         }
 
-        var funcs = ArrayMap( md.functions, function( func ) {
-            return func.name;
-        } );
-        return arrayContainsNoCase( funcs, methodName );
+        for ( var func in md.functions ) {
+            if ( func.name == methodName ) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

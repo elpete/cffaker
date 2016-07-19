@@ -1,4 +1,4 @@
-component {
+component extends="cffaker.models.Providers.Base" {
 
     variables.maleFirstNames = [
         'Aaron', 'Abdiel', 'Abdul', 'Abdullah', 'Abe', 'Abel', 'Abelardo', 'Abner', 'Abraham', 'Adalberto', 'Adam', 'Adan', 'Adelbert', 'Adolf', 'Adolfo', 'Adolph', 'Adolphus', 'Adonis', 'Adrain', 'Adrian', 'Adriel', 'Adrien', 'Afton', 'Agustin', 'Ahmad', 'Ahmed', 'Aidan', 'Aiden', 'Akeem', 'Al', 'Alan', 'Albert', 'Alberto', 'Albin', 'Alden', 'Alec', 'Alejandrin', 'Alek', 'Alessandro', 'Alex', 'Alexander', 'Alexandre', 'Alexandro', 'Alexie', 'Alexis', 'Alexys', 'Alexzander', 'Alf', 'Alfonso', 'Alfonzo', 'Alford', 'Alfred', 'Alfredo', 'Ali', 'Allan', 'Allen', 'Alphonso', 'Alvah', 'Alvis', 'Amani', 'Amari', 'Ambrose', 'Americo', 'Amir', 'Amos', 'Amparo', 'Anastacio', 'Anderson', 'Andre', 'Andres', 'Andrew', 'Andy', 'Angel', 'Angelo', 'Angus', 'Anibal', 'Ansel', 'Ansley', 'Anthony', 'Antone', 'Antonio', 'Antwan', 'Antwon', 'Arch', 'Archibald', 'Arden', 'Arely', 'Ari', 'Aric', 'Ariel', 'Arjun', 'Arlo', 'Armand', 'Armando', 'Armani', 'Arnaldo', 'Arne', 'Arno', 'Arnold', 'Arnoldo', 'Arnulfo', 'Aron', 'Art', 'Arthur', 'Arturo', 'Arvel', 'Arvid', 'Ashton', 'August', 'Augustus', 'Aurelio', 'Austen', 'Austin', 'Austyn', 'Avery', 'Axel', 'Ayden',
@@ -96,7 +96,8 @@ component {
     }
 
     public string function firstName() {
-        return getElement( arrayMerge( maleFirstNames, femaleFirstNames ) );
+        maleFirstNames.addAll( femaleFirstNames );
+        return getElement( maleFirstNames );
     }
 
     public string function maleFirstName() {
@@ -112,7 +113,8 @@ component {
     }
 
     public string function title() {
-        return getElement( arrayMerge( maleTitles, femaleTitles ) );
+        maleTitles.addAll( femaleTitles );
+        return getElement( maleTitles );
     }
 
     public string function maleTitle() {
@@ -121,15 +123,6 @@ component {
 
     public string function femaleTitle() {
         return getElement( femaleTitles );
-    }
-
-    private numeric function randRangeInt( required numeric min, required numeric max ) {
-        return createObject( "java", "java.util.concurrent.ThreadLocalRandom" )
-            .current().nextInt( min, max );
-    }
-
-    private any function getElement( required array collection ) {
-        return collection[ randRangeInt( 1, arrayLen( collection ) ) ];
     }
 
 }

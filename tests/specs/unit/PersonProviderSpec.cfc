@@ -33,9 +33,9 @@ component extends="testbox.system.BaseSpec" {
             } );
 
             it( "generates fake titles", function() {
-                ensureUniqueness( "title" );
-                ensureUniqueness( "maleTitle" );
-                ensureUniqueness( "femaleTitle" );
+                ensureUniqueness( "title", 10 );
+                ensureUniqueness( "maleTitle", 10 );
+                ensureUniqueness( "femaleTitle", 10 );
             } );
         } );
     }
