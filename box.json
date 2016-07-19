@@ -1,0 +1,46 @@
+{
+    "name":"cffaker",
+    "version":"0.1.0",
+    "author":"Eric Peterson",
+    "location":"elpete/cffaker#v0.1.0",
+    "homepage":"https://github.com/elpete/cffaker",
+    "documentation":"https://github.com/elpete/cffaker/master/README.md",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/elpete/cffaker"
+    },
+    "bugs":"https://github.com/elpete/cffaker/issues",
+    "slug":"cffaker",
+    "shortDescription":"A library for generating specific types of fake data",
+    "type":"modules",
+    "keywords":[
+        "fake",
+        "data",
+        "seeding",
+        "generator"
+    ],
+    "private":false,
+    "license":[
+        {
+            "type":"MIT",
+            "URL":"https://raw.githubusercontent.com/elpete/cffaker/master/LICENSE"
+        }
+    ],
+    "dependencies":{
+        
+    },
+    "devDependencies":{
+        "testbox":"^2.3.0+00044"
+    },
+    "installPaths":{
+        "testbox":"testbox"
+    },
+    "scripts":{
+        
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ]
+}

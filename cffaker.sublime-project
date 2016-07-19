@@ -1,0 +1,29 @@
+{
+    "folders":
+    [
+        {
+            "path": "."
+        }
+    ],
+    "mappings": [
+        {
+            "mapping": "/models",
+            "path": "models"
+        },
+        {
+            "mapping": "/tests",
+            "path": "tests"
+        }
+    ],
+    "cfc_folders": [
+        {
+            "path": "models",
+            "variable_names": ["{cfc}"]
+        }
+    ],
+    "di_property": {
+        "script_template": "property name=\"{name}\" inject=\"id\";",
+        "tag_template": "<cfproperty name=\"{name}\" inject=\"id\">",
+        "sort_properties": true
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "cffaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gulpfile.js",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elpete/cffaker.git"
+  },
+  "author": "Eric Peterson <=>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elpete/cffaker/issues"
+  },
+  "homepage": "https://github.com/elpete/cffaker#readme",
+  "devDependencies": {
+    "coldbox-elixir": "^1.1.0"
+  }
+}
