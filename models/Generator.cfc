@@ -30,16 +30,28 @@ component {
 
     private function methodExists( methodName, component ) {
         var md = getMetadata( component );
-        if ( ! structKeyExists( md, "functions" ) ) {
-            return false;
-        }
+        var funcs = getComponentFunctions( md );
 
-        for ( var func in md.functions ) {
+        for ( var func in funcs ) {
             if ( func.name == methodName ) {
                 return true;
             }
         }
         return false;
+    }
+
+    private function getComponentFunctions( required struct md ) {
+        var funcs = [];
+
+        if ( structKeyExists( md, "functions" ) ) {
+            funcs.addAll( md.functions );
+        }
+
+        if ( structKeyExists( md, "extends" ) ) {
+            funcs.addAll( getComponentFunctions( md.extends ) );
+        }
+
+        return funcs;
     }
 
 }
