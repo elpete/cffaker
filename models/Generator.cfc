@@ -2,9 +2,28 @@ component {
 
     property name="providers" type="array" default="[]";
 
+    variables.pattern = createObject( "java", "java.util.regex.Pattern" ).compile( "\{\{\s?(\w+)\s?\}\}" );
+
     public Generator function init() {
         variables.providers = [];
         return this;
+    }
+
+    public any function parse( required string template ) {
+        var matcher = pattern.matcher( template );
+        if ( ! matcher.find() ) {
+            return template;
+        }
+        return parse( matcher.replaceFirst( format( matcher.group( 1 ) ) ) );
+    }
+
+    public any function format( required string token ) {
+        for ( var provider in providers ) {
+            if ( methodExists( token, provider ) ) {
+                return invoke( provider, token );
+            }
+        }
+        throw( "component [#getMetadata( this ).name#] has no function named [#token#]" );
     }
 
     public Generator function addProvider( required any provider ) {
@@ -37,6 +56,17 @@ component {
                 return true;
             }
         }
+
+        // Also return true if we've mocked the method
+        if ( structKeyExists( component, "_mockResults" ) ) {
+            var mockedFuncNames = structKeyArray( component[ "_mockResults" ] );
+            for ( var mockedFuncName in mockedFuncNames ) {
+                if ( mockedFuncName == methodName ) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 

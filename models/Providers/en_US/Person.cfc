@@ -81,46 +81,4 @@ component extends="cffaker.models.Providers.Person" {
         'Zboncak', 'Zemlak', 'Ziemann', 'Zieme', 'Zulauf'
     ];
 
-    public string function name() {
-        return "#firstName()# #lastName()#";
-    }
-
-    public string function maleName() {
-        return "#maleFirstName()# #lastName()#";   
-    }
-
-    public string function femaleName() {
-        return "#femaleFirstName()# #lastName()#";   
-    }
-
-    public string function firstName() {
-        maleFirstNames.addAll( femaleFirstNames );
-        return getElement( maleFirstNames );
-    }
-
-    public string function maleFirstName() {
-        return getElement( maleFirstNames );
-    }
-
-    public string function femaleFirstName() {
-        return getElement( femaleFirstNames );
-    }
-
-    public string function lastName() {
-        return getElement( lastNames );
-    }
-
-    public string function title() {
-        maleTitles.addAll( femaleTitles );
-        return getElement( maleTitles );
-    }
-
-    public string function maleTitle() {
-        return getElement( maleTitles );
-    }
-
-    public string function femaleTitle() {
-        return getElement( femaleTitles );
-    }
-
 }

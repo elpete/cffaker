@@ -2,7 +2,7 @@ component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
         variables.faker = new models.Generator();
-        faker.addProvider( new models.Providers.en_US.Person() );
+        faker.addProvider( new models.Providers.en_US.Person( faker ) );
     }
 
     function run() {

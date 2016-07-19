@@ -32,7 +32,7 @@ component {
 
         for ( var provider in defaultProviders ) {
             var providerPath = getProviderClassPath( provider, arguments.locale );
-            generator.addProvider( new "#providerPath#"() );
+            generator.addProvider( new "#providerPath#"( generator ) );
         }
 
         return generator;

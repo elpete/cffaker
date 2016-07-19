@@ -30,5 +30,27 @@ component extends="testbox.system.BaseSpec" {
                     .toContain( provider, "New provider did not get added to the providers." );
             } );
         } );
+
+        describe( "formatting tokens", function() {
+            it( "searches it's providers to format a token", function() {
+                var provider = getMockBox().createStub();
+                provider.$( "firstName", "John" );
+                faker.addProvider( provider );
+                faker.format( "firstName" );
+
+                expect( provider.$times( 1, "firstName" ) )
+                    .toBeTrue( "`firstName()` should have been called once" );
+            } );
+        } );
+
+        describe( "parsing templates", function() {
+            it( "can parse a template in to the needed tokens", function() {
+                faker.$( "format" ).$args( "firstName" ).$results( "John" );
+                faker.$( "format" ).$args( "lastName" ).$results( "Doe" );
+                faker.parse( "{{firstName}} {{lastName}}" );
+                expect( faker.$times( 2, "format" ) )
+                    .toBeTrue( "`format()` should have been called twice" );
+            } );
+        } );
     }
 }

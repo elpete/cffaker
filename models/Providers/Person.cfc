@@ -1,5 +1,10 @@
 component extends="cffaker.models.Providers.Base" {
 
+    variables.titleFormats = [ "{{maleTitle}}", "{{femaleTitle}}" ];
+    variables.firstNameFormats = [ "{{maleFirstName}}", "{{femaleFirstName}}" ];
+    variables.maleNameFormats = [ "{{maleFirstName}} {{lastName}}" ];
+    variables.femaleNameFormats = [ "{{femaleFirstName}} {{lastName}}" ];
+
     variables.maleFirstNames = [ "John" ];
     variables.femaleFirstNames = [ "Jane" ];
     variables.lastNames = [ "Doe" ];
@@ -7,49 +12,51 @@ component extends="cffaker.models.Providers.Base" {
     variables.femaleTitles = [ "Mrs.", "Ms.", "Miss", "Dr.", "Prof." ];
 
     public string function name() {
-        return "#firstName()# #lastName()#";
+        var nameFormats = [];
+        nameFormats.addAll( maleNameFormats );
+        nameFormats.addAll( femaleNameFormats );
+        var format = randomElement( nameFormats );
+        return generator.parse( format );
     }
 
     public string function maleName() {
-        return "#maleFirstName()# #lastName()#";   
+        var format = randomElement( maleNameFormats );
+        return generator.parse( format );
     }
 
     public string function femaleName() {
-        return "#femaleFirstName()# #lastName()#";   
+        var format = randomElement( femaleNameFormats );
+        return generator.parse( format );
     }
 
     public string function firstName() {
-        var firstNames = [];
-        firstNames.addAll( maleFirstNames );
-        firstNames.addAll( femaleFirstNames );
-        return getElement( firstNames );
+        var format = randomElement( firstNameFormats );
+        return generator.parse( format );
     }
 
     public string function maleFirstName() {
-        return getElement( maleFirstNames );
+        return randomElement( maleFirstNames );
     }
 
     public string function femaleFirstName() {
-        return getElement( femaleFirstNames );
+        return randomElement( femaleFirstNames );
     }
 
     public string function lastName() {
-        return getElement( lastNames );
+        return randomElement( lastNames );
     }
 
     public string function title() {
-        var titles = [];
-        titles.addAll( maleTitles );
-        titles.addAll( femaleTitles );
-        return getElement( titles );
+        var format = randomElement( titleFormats );
+        return generator.parse( format );
     }
 
     public string function maleTitle() {
-        return getElement( maleTitles );
+        return randomElement( maleTitles );
     }
 
     public string function femaleTitle() {
-        return getElement( femaleTitles );
+        return randomElement( femaleTitles );
     }
 
 }
