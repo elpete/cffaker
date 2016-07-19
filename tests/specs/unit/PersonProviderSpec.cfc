@@ -1,8 +1,10 @@
 component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
-        variables.faker = new models.Generator();
-        faker.addProvider( new models.Providers.en_US.Person( faker ) );
+        var factory = new models.Factory();
+        prepareMock( factory );
+        factory.$property( propertyName = "moduleMapping", mock = "/" );
+        variables.faker = factory.create();
     }
 
     function run() {
