@@ -1,10 +1,24 @@
 component {
 
-    // The default locale with which to scope the providers.
+    property name="moduleMapping" inject="moduleMapping@cffaker";
+
+    // The default locale with which to scope the providers
     variables.defaultLocale = "en_US";
 
-    // The default providers to load into the Generator.
+    // The default providers to load into the Generator
     variables.defaultProviders = [ "Person" ];
+
+    /**
+    * Initializes the Factory with the given locale
+    *
+    * @locale The locale with which to scope the providers
+    *
+    * @return CFFaker.models.Factory
+    */
+    public Factory function init( string locale = defaultLocale ) {
+        variables.locale = arguments.locale;
+        return this;
+    }
 
     /**
     * Creates a new Generator with the default providers loaded
@@ -13,11 +27,11 @@ component {
     * 
     * @return CFFaker.models.Generator
     */
-    public Generator function create( string locale = defaultLocale ) {
+    public Generator function create( string locale = variables.locale ) {
         var generator = new Generator();
 
         for ( var provider in defaultProviders ) {
-            var providerPath = getProviderClassPath( provider, locale );
+            var providerPath = getProviderClassPath( provider, arguments.locale );
             generator.addProvider( new "#providerPath#"() );
         }
 
@@ -37,8 +51,8 @@ component {
         required string provider,
         required string locale
     ) {
-        if ( providerClassPathExists( provider, locale ) ) {
-            return generateClassPath( provider, locale, "." );
+        if ( providerClassPathExists( provider, arguments.locale ) ) {
+            return generateClassPath( provider, arguments.locale, "." );
         }
 
         // fallback to default locale
@@ -53,7 +67,7 @@ component {
 
         throw(
             type = "ProviderNotFound",
-            message = "Unable to find provider [#provider#] with locale [#locale#]."
+            message = "Unable to find provider [#provider#] with locale [#arguments.locale#]."
         );
     }
 
@@ -69,7 +83,9 @@ component {
         required string provider,
         string locale = ""
     ) {
-        return FileExists( ExpandPath( "/#generateClassPath( provider, locale, "/" )#.cfc" ) );
+        return FileExists(
+            ExpandPath( "/#generateClassPath( provider, arguments.locale, "/" )#.cfc" )
+        );
     }
 
     /**
@@ -86,7 +102,8 @@ component {
         required string locale,
         required string delimiter
     ) {
-        var pathArray = [ "models", "Providers", locale, provider ];
+        var pathArray = listToArray( moduleMapping, "/" );
+        pathArray.addAll( [ "models", "Providers", arguments.locale, provider ] );
         pathArray = arrayFilter( pathArray, function( pathComponent ) {
             return pathComponent != "";
         } );
