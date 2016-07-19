@@ -2,6 +2,8 @@ component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
         variables.factory = new models.Factory();
+        prepareMock( factory );
+        factory.$property( propertyName = "moduleMapping", mock = "/" );
     }
 
     function run() {
