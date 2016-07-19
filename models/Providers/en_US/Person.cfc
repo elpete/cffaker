@@ -85,6 +85,14 @@ component {
         return "#firstName()# #lastName()#";
     }
 
+    public string function maleName() {
+        return "#maleFirstName()# #lastName()#";   
+    }
+
+    public string function femaleName() {
+        return "#femaleFirstName()# #lastName()#";   
+    }
+
     public string function firstName() {
         return getElement( arrayMerge( maleFirstNames, femaleFirstNames ) );
     }

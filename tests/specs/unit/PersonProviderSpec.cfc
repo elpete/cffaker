@@ -22,10 +22,14 @@ component extends="testbox.system.BaseSpec" {
 
             it( "generates uniquely fake names", function() {
                 ensureUniqueness( "name" );
+                ensureUniqueness( "maleName" );
+                ensureUniqueness( "femaleName" );
             } );
 
             it( "generates full names by default", function() {
                 expect( faker.name() ).toInclude( " ", "The name should have a space" );
+                expect( faker.maleName() ).toInclude( " ", "The name should have a space" );
+                expect( faker.femaleName() ).toInclude( " ", "The name should have a space" );
             } );
 
         } );
