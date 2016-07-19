@@ -80,6 +80,8 @@ component {
         'Yost', 'Yundt',
         'Zboncak', 'Zemlak', 'Ziemann', 'Zieme', 'Zulauf'
     ];
+    variables.maleTitles = [ "Mr.", "Dr.", "Prof." ];
+    variables.femaleTitles = [ "Mrs.", "Ms.", "Miss", "Dr.", "Prof." ];
 
     public string function name() {
         return "#firstName()# #lastName()#";
@@ -107,6 +109,18 @@ component {
 
     public string function lastName() {
         return getElement( lastNames );
+    }
+
+    public string function title() {
+        return getElement( arrayMerge( maleTitles, femaleTitles ) );
+    }
+
+    public string function maleTitle() {
+        return getElement( maleTitles );
+    }
+
+    public string function femaleTitle() {
+        return getElement( femaleTitles );
     }
 
     private numeric function randRangeInt( required numeric min, required numeric max ) {

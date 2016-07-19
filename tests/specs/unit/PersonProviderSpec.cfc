@@ -32,6 +32,11 @@ component extends="testbox.system.BaseSpec" {
                 expect( faker.femaleName() ).toInclude( " ", "The name should have a space" );
             } );
 
+            it( "generates fake titles", function() {
+                ensureUniqueness( "title" );
+                ensureUniqueness( "maleTitle" );
+                ensureUniqueness( "femaleTitle" );
+            } );
         } );
     }
 
