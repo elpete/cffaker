@@ -6,7 +6,7 @@ component {
     variables.defaultLocale = "en_US";
 
     // The default providers to load into the Generator
-    variables.defaultProviders = [ "Person" ];
+    variables.defaultProviders = [ "Person", "Internet" ];
 
     /**
     * Initializes the Factory with the given locale
@@ -52,17 +52,17 @@ component {
         required string locale
     ) {
         if ( providerClassPathExists( provider, arguments.locale ) ) {
-            return generateClassPath( provider, arguments.locale, "." );
+            return generateClassPath( ".", provider, arguments.locale );
         }
 
         // fallback to default locale
         if ( providerClassPathExists( provider, defaultLocale ) ) {
-            return generateClassPath( provider, defaultLocale, "." );   
+            return generateClassPath( ".", provider, defaultLocale );   
         }
 
         // fallback to no locale
         if ( providerClassPathExists( provider ) ) {
-            return generateClassPath( provider, "." );   
+            return generateClassPath( ".", provider );   
         }
 
         throw(
@@ -84,7 +84,7 @@ component {
         string locale = ""
     ) {
         return FileExists(
-            ExpandPath( "/#generateClassPath( provider, arguments.locale, "/" )#.cfc" )
+            ExpandPath( "/#generateClassPath( "/", provider, arguments.locale )#.cfc" )
         );
     }
 
@@ -98,9 +98,9 @@ component {
     * @return string
     */
     private string function generateClassPath(
+        required string delimiter,
         required string provider,
-        required string locale,
-        required string delimiter
+        string locale = ""
     ) {
         var pathArray = listToArray( moduleMapping, "/" );
         pathArray.addAll( [ "models", "Providers", arguments.locale, provider ] );
