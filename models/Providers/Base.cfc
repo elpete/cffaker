@@ -13,6 +13,7 @@ component {
     }
 
     private string function numerify( required string target ) {
+        // remember that # has to be escaped in CFML
         return replaceWildcard( target, "##", "randomDigit" );
     }
 
@@ -32,13 +33,13 @@ component {
         return arrayToList( newWordArray, "" );
     }
 
-    private numeric function randRangeInt( required numeric min, required numeric max ) {
+    private numeric function numberBetween( required numeric min, required numeric max ) {
         return createObject( "java", "java.util.concurrent.ThreadLocalRandom" )
             .current().nextInt( min, max );
     }
 
     private any function randomDigit() {
-        return randRangeInt( 0, 9 );
+        return numberBetween( 0, 9 );
     }
 
     private any function randomLetter() {
@@ -50,6 +51,6 @@ component {
         if ( len == 1 ) {
             return collection[ len ];
         }
-        return collection[ randRangeInt( 1, arrayLen( collection ) ) ];
+        return collection[ numberBetween( 1, arrayLen( collection ) ) ];
     }
 }
