@@ -1,13 +1,18 @@
 component extends="cffaker.models.Providers.Base" {
 
-    variables.userNameFormats = [ "{{firstName}}.{{lastName}}", "{{lastName}}.{{firstName}}" ];
+    variables.userNameFormats = [
+        "{{firstName}}.{{lastName}}",
+        "{{lastName}}.{{firstName}}",
+        "{{firstName}}##",
+        "?{{firstName}}"
+    ];
     variables.emailFormats = [ "{{userName}}@{{safeEmailDomain}}" ];
 
     variables.safeEmailDomains = [ "example.com", "example.org", "example.net" ];
 
     public string function username() {
         var format = randomElement( userNameFormats );
-        return generator.parse( format );
+        return lexify( numerify( generator.parse( format ) ) );
     }
 
     public string function email() {

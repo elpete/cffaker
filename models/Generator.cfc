@@ -14,7 +14,8 @@ component {
         if ( ! matcher.find() ) {
             return template;
         }
-        return parse( matcher.replaceFirst( format( matcher.group( 1 ) ) ) );
+        var method = mid( matcher.group(), 3, len( matcher.group() ) - 4 );
+        return parse( matcher.replaceFirst( format( method ) ) );
     }
 
     public any function format( required string token ) {
@@ -74,11 +75,15 @@ component {
         var funcs = [];
 
         if ( structKeyExists( md, "functions" ) ) {
-            funcs.addAll( md.functions );
+            for ( var func in md.functions ) {
+                arrayAppend( funcs, func );
+            }
         }
 
         if ( structKeyExists( md, "extends" ) ) {
-            funcs.addAll( getComponentFunctions( md.extends ) );
+            for ( var func in getComponentFunctions( md.extends ) ) {
+                arrayAppend( funcs, func );
+            }
         }
 
         return funcs;
