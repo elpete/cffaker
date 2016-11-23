@@ -25,8 +25,7 @@ component {
         var newWordArray = [];
         for ( var char in listToArray( target, "" ) ) {
             if ( char == wildcard ) {
-                var method = variables[ methodName ];
-                char = method();
+                char = invoke( this, methodName );;
             }
             arrayAppend( newWordArray, char );
         }
