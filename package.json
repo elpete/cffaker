@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/elpete/cffaker#readme",
   "devDependencies": {
-    "coldbox-elixir": "^1.1.0"
+    "coldbox-elixir": "^2.0.0",
+    "coldbox-elixir-browsersync": "^1.2.0",
+    "gulp": "^3.9.1"
   }
 }
