@@ -25,5 +25,18 @@
         "script_template": "property name=\"{name}\" inject=\"id\";",
         "tag_template": "<cfproperty name=\"{name}\" inject=\"id\">",
         "sort_properties": true
+    },
+    "settings": {
+        "on_pre_save_project":
+        [
+            {
+                "args":
+                {
+                    "commands": [],
+                    "current_method": false
+                },
+                "command": "cfml_format"
+            }
+        ]
     }
 }
