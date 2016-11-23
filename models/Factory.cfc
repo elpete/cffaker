@@ -83,8 +83,8 @@ component {
         required string provider,
         string locale = ""
     ) {
-        return FileExists(
-            ExpandPath( "/#generateClassPath( "/", provider, arguments.locale )#.cfc" )
+        return fileExists(
+            expandPath( "/#generateClassPath( "/", provider, arguments.locale )#.cfc" )
         );
     }
 

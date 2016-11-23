@@ -6,11 +6,11 @@ component extends="testbox.system.BaseSpec" {
 
         addMatchers( {
             "toContain" = function( expectation, args = {} ) {
-                expectation.message = arrayLen( structKeyArray( args ) ) > 1 ? args[2] : "Could not find the given object in the array";
+                expectation.message = arrayLen( structKeyArray( args ) ) > 1 ? args[ 2 ] : "Could not find the given object in the array";
                 if ( expectation.isNot ) {
-                    return NOT arrayContains( expectation.actual, args[1] );
+                    return NOT arrayContains( expectation.actual, args[ 1 ] );
                 } else {
-                    return arrayContains( expectation.actual, args[1] );
+                    return arrayContains( expectation.actual, args[ 1 ] );
                 }
             }
         } );

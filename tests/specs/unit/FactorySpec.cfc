@@ -11,7 +11,7 @@ component extends="testbox.system.BaseSpec" {
             it( "is instantiates a generator with default providers", function() {
                 var faker = factory.create();
                 expect( faker.getProviders() )
-                    .notToBeEmpty( "Default providers should have been set." );    
+                    .notToBeEmpty( "Default providers should have been set." );
             } );
         } );
     }
