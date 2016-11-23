@@ -42,5 +42,8 @@
         "**/.*",
         "test",
         "tests"
-    ]
+    ],
+    "testbox": {
+        "runner": "http://localhost:42435/tests/runner.cfm"
+    }
 }
